@@ -1,8 +1,15 @@
 import sys
+import cv2
+
+SPECTRUM_LENGTH = 256
 
 def make_row_spectrum(FileName):
-  return 0
-
+  img = cv2.imread(FileName)
+  if img is None:
+    sys.exit(f"Cannot open an image {FileName}")
+  
+  sp = cv2.resize(img, (SPECTRUM_LENGTH, 10))  
+  return sp
 
 def main():
   if(len(sys.argv)) < 3:
